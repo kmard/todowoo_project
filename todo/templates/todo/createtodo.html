@@ -1,19 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create to do</title>
 </head>
+{% extends 'todo/base.html' %}
+
+{% block content %}
 <form method="POST">
-
-    {% extends 'todo/base.html' %}
-
-    {% block content %}
         <h1>Create to do</h1>
         <h2>{{error}}</h2>
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit">Create</button>
-    {% endblock content %}
 </form>
+{% endblock content %}
 </html>
