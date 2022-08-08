@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <title>To do </title>
 </head>
-<body>
-  {% extends 'todo/base.html' %}
 
-  {% block content %}
+{% extends 'todo/base.html' %}
+{% block content %}
+<body>
      Current
-  {% endblock content %}
+  <ul>
+      {% for todo in todos %}
+         <li>
+             {% if todo.important %}<b>{% endif%}{{ todo.title }}{% if todo.important %}</b>{% endif %}
+             {% if todo.memo %} -{{ todo.memo }}- {% endif %}
+         </li>
+      {% endfor %}
+  </ul>
 </body>
+{% endblock content %}
 </html>
