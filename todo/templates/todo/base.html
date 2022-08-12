@@ -46,12 +46,12 @@
    {% block content %}
 
    {% endblock content %}
-   {% if user.is_authenticated %}
+   {% if user.is_authenticated and btnExit %}
       <form action="{% url 'logoutuser' %}" method="POST">
          {% csrf_token %}
           <button type="submit" class="btn btn-primary btn-lg">logout</button>
-<!--          <button type="submit">logout</button>-->
       </form>
+
    {% endif %}
 
 </body>

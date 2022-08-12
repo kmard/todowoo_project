@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
-    return render(request, "todo/home.html")
+    return render(request, "todo/home.html",{'btnExit':True})
 
 def signupuser(request):
     if request.method == "GET":
@@ -33,7 +33,7 @@ def signupuser(request):
 @login_required
 def currenttodos(request):
     todos = Todo.objects.filter(user = request.user, datecompleted__isnull=True)
-    return render(request, "todo/currenttodos.html",{'todos':todos,})
+    return render(request, "todo/currenttodos.html",{'todos':todos,'btnExit':True})
 @login_required
 def logoutuser(request):
     if request.method == 'POST':
@@ -53,7 +53,7 @@ def loginuser(request):
 @login_required
 def  createtodo(request):
     if request.method == "GET":
-        return render(request, "todo/createtodo.html", {'form': TodoForm()})
+        return render(request, "todo/createtodo.html", {'form': TodoForm(),})
     else:
         try:
             form = TodoForm(request.POST)
@@ -62,14 +62,14 @@ def  createtodo(request):
             newtodo.save()
             return redirect('currenttodos')
         except ValueError:
-            return render(request, "todo/createtodo.html", {'form': TodoForm(),'error':'Bad data passed in, try again'})
+            return render(request, "todo/createtodo.html", {'form': TodoForm(),'error':'Bad data passed in, try again',})
 
 @login_required
 def viewtodo(request,todo_pk):
     todo = get_object_or_404(Todo,pk=todo_pk,user = request.user)
     if request.method == "GET":
         form = TodoForm(instance=todo)
-        return render(request, "todo/viewtodo.html", {'todo': todo, 'form': form})
+        return render(request, "todo/viewtodo.html", {'todo': todo, 'form': form,'btnExit':False})
     else:
         try:
             form = TodoForm(request.POST,instance=todo)

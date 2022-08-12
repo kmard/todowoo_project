@@ -2,31 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>To do home </title>
+    <title>View todo todo </title>
 </head>
 <body>
   {% extends "todo/base.html" %}
-
   {% block content %}
-     Current todo
+
+
      <br>
      {{error}}
-     {{todo.title}}
-        <form method = "POST">
+
+        <form method = "POST" id="save">
           {% csrf_token %}
           {{form.as_p}}
-          <button type="submit">Save</button>
         </form>
-        <br>
-         <form method = "POST" action="{% url 'completetodo' todo.id %}">
+
+         <form method = "POST" action="{% url 'completetodo' todo.id %}" id="complete">
           {% csrf_token %}
-          <button type="submit">Complete</button>
         </form>
-        <br>
-         <form method = "POST" action="{% url 'deletetodo' todo.id %}">
+
+         <form method = "POST" action="{% url 'deletetodo' todo.id %}" id="delete">
           {% csrf_token %}
-          <button type="submit">Delete</button>
         </form>
-  {% endblock %}
+    <div>
+        <button type="submit" form="save" class="btn btn-primary btn-lg">Save</button>
+        <button type="submit" form="complete" class="btn btn-primary btn-lg">Complete</button>
+        <button type="submit" form="delete" class="btn btn-primary btn-lg">Delete</button>
+    </div>
+     {% endblock content %}
+
 </body>
 </html>
