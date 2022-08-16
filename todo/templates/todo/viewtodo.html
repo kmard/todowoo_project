@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View todo todo </title>
+    <title>View todo </title>
 </head>
 <body>
   {% extends "todo/base.html" %}
@@ -15,6 +15,7 @@
         <form method = "POST" id="save">
           {% csrf_token %}
           {{form.as_p}}
+
         </form>
 
          <form method = "POST" action="{% url 'completetodo' todo.id %}" id="complete">

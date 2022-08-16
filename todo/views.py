@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
-from .forms import TodoForm
+from .forms import TodoForm,mTodoForm
 from .models import Todo
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -54,6 +54,7 @@ def loginuser(request):
 def  createtodo(request):
     if request.method == "GET":
         return render(request, "todo/createtodo.html", {'form': TodoForm(),})
+        # return render(request, "todo/createtodo.html", {'form': mTodoForm(), })
     else:
         try:
             form = TodoForm(request.POST)
