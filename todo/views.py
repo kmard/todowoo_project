@@ -53,8 +53,8 @@ def loginuser(request):
 @login_required
 def  createtodo(request):
     if request.method == "GET":
-        return render(request, "todo/createtodo.html", {'form': TodoForm(),})
-        # return render(request, "todo/createtodo.html", {'form': mTodoForm(), })
+        # return render(request, "todo/createtodo.html", {'form': TodoForm(),})
+        return render(request, "todo/createtodo.html", {'form': mTodoForm(), })
     else:
         try:
             form = TodoForm(request.POST)
@@ -69,7 +69,7 @@ def  createtodo(request):
 def viewtodo(request,todo_pk):
     todo = get_object_or_404(Todo,pk=todo_pk,user = request.user)
     if request.method == "GET":
-        form = TodoForm(instance=todo)
+        form = mTodoForm(instance=todo)
         return render(request, "todo/viewtodo.html", {'todo': todo, 'form': form,'btnExit':False})
     else:
         try:
