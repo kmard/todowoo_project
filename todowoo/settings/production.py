@@ -77,9 +77,14 @@ WSGI_APPLICATION = 'todowoo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, 'test.DB'),
+        'NAME': 'testDB',
+        'USER':'mkv',
+        'PASSWORD':'1',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
+
 
 
 # Password validation
